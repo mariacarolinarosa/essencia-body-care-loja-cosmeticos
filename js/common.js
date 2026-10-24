@@ -5,18 +5,18 @@
    ========================================================= */
 
 const PRODUCTS = [
-  { id:'hidratante-vanilla', name:'Creme Vanilla', category:'Hidratantes', price:80, image:'Imagens/hidratante1.jpg', description:'Hidratação cremosa com uma atmosfera delicada de baunilha e toque aconchegante.', tag:'Mais vendido' },
-  { id:'hidratante-lavanda', name:'Creme Lavanda', category:'Hidratantes', price:85, image:'Imagens/hidratante2.jpg', description:'Fórmula cremosa inspirada na lavanda, pensada para uma rotina de autocuidado suave.', tag:'Ritual noturno' },
-  { id:'sabonete-rosas', name:'Sabonete Maison Rose', category:'Sabonetes', price:40, image:'Imagens/sabonete1.jpg', description:'Sabonete delicado com estética floral e sensorial romântico para o banho.', tag:'Floral' },
-  { id:'sabonete-liquido', name:'Sabonete Líquido', category:'Sabonetes', price:45, image:'Imagens/sabonete2.jpg', description:'Limpeza suave para transformar o banho em um pequeno ritual de cuidado.', tag:'Essencial' },
-  { id:'kit-spa', name:'Kit Oasis', category:'Kits', price:150, image:'Imagens/kit.jpg', description:'Uma seleção para criar um momento de spa em casa, com apresentação delicada e mística.', tag:'Presente' },
-  { id:'oleo-amendoas', name:'Óleo de Amêndoas', category:'Óleos', price:95, image:'Imagens/oleo.jpg', description:'Óleo corporal para uma etapa de cuidado e nutrição, ideal para complementar seu ritual.', tag:'Clássico' }
+  { id: 'hidratante-vanilla', name: 'Creme Vanilla', category: 'Hidratantes', price: 80, image: 'Imagens/hidratante1.jpg', description: 'Hidratação cremosa com uma atmosfera delicada de baunilha e toque aconchegante.', tag: 'Mais vendido' },
+  { id: 'hidratante-lavanda', name: 'Creme Lavanda', category: 'Hidratantes', price: 85, image: 'Imagens/hidratante2.jpg', description: 'Fórmula cremosa inspirada na lavanda, pensada para uma rotina de autocuidado suave.', tag: 'Ritual noturno' },
+  { id: 'sabonete-rosas', name: 'Sabonete Maison Rose', category: 'Sabonetes', price: 40, image: 'Imagens/sabonete1.jpg', description: 'Sabonete delicado com estética floral e sensorial romântico para o banho.', tag: 'Floral' },
+  { id: 'sabonete-liquido', name: 'Sabonete Líquido', category: 'Sabonetes', price: 45, image: 'Imagens/sabonete2.jpg', description: 'Limpeza suave para transformar o banho em um pequeno ritual de cuidado.', tag: 'Essencial' },
+  { id: 'kit-spa', name: 'Kit Oasis', category: 'Kits', price: 150, image: 'Imagens/kit.jpg', description: 'Uma seleção para criar um momento de spa em casa, com apresentação delicada e mística.', tag: 'Presente' },
+  { id: 'oleo-amendoas', name: 'Óleo de Amêndoas', category: 'Óleos', price: 95, image: 'Imagens/oleo.jpg', description: 'Óleo corporal para uma etapa de cuidado e nutrição, ideal para complementar seu ritual.', tag: 'Clássico' }
 ];
 
 const CART_KEY = 'essencia-body-care-cart';
 
 function money(value) {
-  return value.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 function getCart() {
@@ -154,9 +154,9 @@ function initCatalog() {
     const active = pills.find(p => p.classList.contains('active'))?.dataset.filter || initialCategory;
     let list = PRODUCTS.filter(p => (active === 'Todos' || p.category === active) && (p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term)));
     const sort = sortSelect?.value;
-    if (sort === 'menor') list.sort((a,b) => a.price - b.price);
-    if (sort === 'maior') list.sort((a,b) => b.price - a.price);
-    if (sort === 'nome') list.sort((a,b) => a.name.localeCompare(b.name));
+    if (sort === 'menor') list.sort((a, b) => a.price - b.price);
+    if (sort === 'maior') list.sort((a, b) => b.price - a.price);
+    if (sort === 'nome') list.sort((a, b) => a.name.localeCompare(b.name));
     grid.innerHTML = list.length ? list.map(productCard).join('') : '<div class="empty" style="grid-column:1/-1"><strong>Nenhum produto encontrado</strong>Tente outro termo ou categoria.</div>';
   }
 
@@ -223,7 +223,7 @@ function initProductDetail() {
   // Voltar para a página anterior
   const btnVoltar = document.getElementById('btn-voltar');
 
-  btnVoltar.addEventListener('click', function(event) {
+  btnVoltar.addEventListener('click', function (event) {
     event.preventDefault();
 
     if (window.history.length > 1) {
@@ -238,7 +238,7 @@ const ACCOUNT_KEY = 'essencia-account-demo';
 const ORDERS_KEY = 'essencia-orders-demo';
 const FAVORITES_KEY = 'essencia-favorites-demo';
 function readDemo(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; } }
-function safeText(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function safeText(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 function getFavorites() { return readDemo(FAVORITES_KEY, []); }
 function toggleFavorite(id) {
   const favorites = getFavorites();
@@ -264,7 +264,7 @@ function initAccount() {
   const form = document.querySelector('[data-account-form]');
   if (form) {
     const saved = readDemo(ACCOUNT_KEY, {});
-    ['nome','email','telefone','endereco','cidade','cep'].forEach(key => { if (form.elements[key]) form.elements[key].value = saved[key] || ''; });
+    ['nome', 'email', 'telefone', 'endereco', 'cidade', 'cep'].forEach(key => { if (form.elements[key]) form.elements[key].value = saved[key] || ''; });
     form.addEventListener('submit', e => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form).entries());
@@ -306,9 +306,9 @@ function initCheckout() {
   form.addEventListener('submit', e => {
     e.preventDefault(); if (!getCart().length || !form.reportValidity()) return;
     const method = form.querySelector('[name="payment-method"]:checked')?.value || 'pix';
-    const labels = {pix:'Pix', boleto:'Boleto bancário', credito:'Cartão de crédito', debito:'Cartão de débito'};
-    const items = getCart().map(i => { const product = PRODUCTS.find(p => p.id === i.id); return product ? {id:i.id,name:product.name,qty:i.qty,price:product.price} : null; }).filter(Boolean);
-    const order = { id: String(Date.now()).slice(-8), date: new Date().toLocaleDateString('pt-BR'), method:labels[method], status:'Simulação — não pago', total:cartTotals().total, items };
+    const labels = { pix: 'Pix', boleto: 'Boleto bancário', credito: 'Cartão de crédito', debito: 'Cartão de débito' };
+    const items = getCart().map(i => { const product = PRODUCTS.find(p => p.id === i.id); return product ? { id: i.id, name: product.name, qty: i.qty, price: product.price } : null; }).filter(Boolean);
+    const order = { id: String(Date.now()).slice(-8), date: new Date().toLocaleDateString('pt-BR'), method: labels[method], status: 'Simulação — não pago', total: cartTotals().total, items };
     const orders = readDemo(ORDERS_KEY, []); orders.unshift(order);
     localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
     localStorage.removeItem(CART_KEY); updateCartBadge(); renderCartDrawer();

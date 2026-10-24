@@ -134,7 +134,7 @@ function productCard(p) {
           <span class="price">${money(p.price)}</span>
           <div class="card-actions">
             <a class="btn secondary mini-btn" href="${productPage}?id=${p.id}">Ver</a>
-            <button class="btn mini-btn" type="button" data-add="${p.id}">Adicionar</button>
+            <button class="btn mini-btn" type="button" data-add="${p.id}">Adicionar</button><button class="btn secondary mini-btn" type="button" data-favorite="${p.id}" aria-label="Favoritar ${p.name}">♡ Favoritar</button>
           </div>
         </div>
       </div>
@@ -207,6 +207,8 @@ function initProductDetail() {
         Adicionar ao carrinho
       </button>
 
+      <button class="btn secondary" type="button" data-favorite="${p.id}">♡ Favoritar</button>
+
       <a href="../index.html"
          class="btn secondary"
          id="btn-voltar"
@@ -232,29 +234,85 @@ function initProductDetail() {
   });
 }
 
+const ACCOUNT_KEY = 'essencia-account-demo';
+const ORDERS_KEY = 'essencia-orders-demo';
+const FAVORITES_KEY = 'essencia-favorites-demo';
+function readDemo(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; } }
+function safeText(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function getFavorites() { return readDemo(FAVORITES_KEY, []); }
+function toggleFavorite(id) {
+  const favorites = getFavorites();
+  const next = favorites.includes(id) ? favorites.filter(x => x !== id) : [...favorites, id];
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
+  syncFavoriteButtons(); renderFavorites();
+  showToast(next.includes(id) ? 'Adicionado aos favoritos.' : 'Removido dos favoritos.');
+}
+function syncFavoriteButtons() {
+  document.querySelectorAll('[data-favorite]').forEach(btn => {
+    const active = getFavorites().includes(btn.dataset.favorite);
+    btn.textContent = active ? '♥ Favorito' : '♡ Favoritar';
+    btn.setAttribute('aria-pressed', String(active));
+  });
+}
+function renderFavorites() {
+  const root = document.querySelector('[data-favorites-list]'); if (!root) return;
+  const products = getFavorites().map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+  root.innerHTML = products.length ? products.map(p => `<article class="account-item"><div><strong>${safeText(p.name)}</strong><p>${money(p.price)} · ${safeText(p.category)}</p></div><div class="account-actions"><a class="btn secondary" href="Produto.html?id=${encodeURIComponent(p.id)}">Ver produto</a><button type="button" class="btn secondary" data-favorite="${p.id}">Remover</button></div></article>`).join('') : '<p class="muted">Você ainda não adicionou produtos aos favoritos.</p>';
+  syncFavoriteButtons();
+}
+function initAccount() {
+  const form = document.querySelector('[data-account-form]');
+  if (form) {
+    const saved = readDemo(ACCOUNT_KEY, {});
+    ['nome','email','telefone','endereco','cidade','cep'].forEach(key => { if (form.elements[key]) form.elements[key].value = saved[key] || ''; });
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      localStorage.setItem(ACCOUNT_KEY, JSON.stringify(data));
+      showToast('Dados salvos neste navegador.');
+    });
+  }
+  const greeting = document.querySelector('[data-account-greeting]');
+  if (greeting) greeting.textContent = readDemo(ACCOUNT_KEY, {}).nome || 'Bem-vinda à sua área';
+  const ordersRoot = document.querySelector('[data-orders-list]');
+  if (ordersRoot) {
+    const orders = readDemo(ORDERS_KEY, []);
+    ordersRoot.innerHTML = orders.length ? orders.map(o => `<article class="account-item"><div><strong>Pedido ${safeText(o.id)}</strong><p>${safeText(o.date)} · ${safeText(o.method)} · ${safeText(o.status)}</p><p>${o.items.map(i => `${safeText(i.name)} × ${i.qty}`).join(' · ')}</p></div><strong>${money(o.total)}</strong></article>`).join('') : '<p class="muted">Você ainda não tem compras demonstrativas.</p>';
+  }
+  renderFavorites();
+}
 function initCheckout() {
   const orderList = document.querySelector('[data-order-list]');
   const totalEl = document.querySelector('[data-checkout-total]');
-  if (!orderList || !totalEl) return;
+  const form = document.querySelector('[data-checkout-form]');
+  if (!orderList || !totalEl || !form) return;
   const cart = getCart();
-  if (!cart.length) {
-    orderList.innerHTML = '<div class="empty"><strong>Carrinho vazio</strong>Adicione algum item antes de finalizar.</div>';
-    totalEl.textContent = money(0);
-    return;
-  }
-  orderList.innerHTML = cart.map(item => {
-    const p = PRODUCTS.find(x => x.id === item.id);
-    return p ? `<div class="order-row"><span>${p.name} × ${item.qty}</span><strong>${money(p.price * item.qty)}</strong></div>` : '';
-  }).join('');
+  orderList.innerHTML = cart.length ? cart.map(item => {
+    const product = PRODUCTS.find(p => p.id === item.id);
+    return product ? `<div class="order-row"><span>${safeText(product.name)} × ${item.qty}</span><strong>${money(product.price * item.qty)}</strong></div>` : '';
+  }).join('') : '<p class="muted">Seu carrinho está vazio.</p>';
   totalEl.textContent = money(cartTotals().total);
-
-  document.querySelector('[data-checkout-form]')?.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!cart.length) return;
-    localStorage.removeItem(CART_KEY);
-    updateCartBadge();
-    showToast('Pedido demonstrativo criado com sucesso.');
-    setTimeout(() => location.href = '../index.html', 900);
+  const submit = form.querySelector('[type="submit"]'); if (submit) submit.disabled = !cart.length;
+  const methods = form.querySelectorAll('[name="payment-method"]');
+  function switchMethod() {
+    const method = form.querySelector('[name="payment-method"]:checked')?.value || 'pix';
+    form.querySelectorAll('[data-payment-panel]').forEach(panel => {
+      const active = panel.dataset.paymentPanel === method;
+      panel.hidden = !active;
+      panel.querySelectorAll('input,select').forEach(input => input.disabled = !active);
+    });
+  }
+  methods.forEach(input => input.addEventListener('change', switchMethod)); switchMethod();
+  form.addEventListener('submit', e => {
+    e.preventDefault(); if (!getCart().length || !form.reportValidity()) return;
+    const method = form.querySelector('[name="payment-method"]:checked')?.value || 'pix';
+    const labels = {pix:'Pix', boleto:'Boleto bancário', credito:'Cartão de crédito', debito:'Cartão de débito'};
+    const items = getCart().map(i => { const product = PRODUCTS.find(p => p.id === i.id); return product ? {id:i.id,name:product.name,qty:i.qty,price:product.price} : null; }).filter(Boolean);
+    const order = { id: String(Date.now()).slice(-8), date: new Date().toLocaleDateString('pt-BR'), method:labels[method], status:'Simulação — não pago', total:cartTotals().total, items };
+    const orders = readDemo(ORDERS_KEY, []); orders.unshift(order);
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+    localStorage.removeItem(CART_KEY); updateCartBadge(); renderCartDrawer();
+    location.href = 'MinhasCompras.html';
   });
 }
 
@@ -264,6 +322,8 @@ function wireGlobalEvents() {
     if (add) { e.preventDefault(); addToCart(add.dataset.add); return; }
     const qty = e.target.closest('[data-qty]');
     if (qty) { changeQty(qty.dataset.qty, Number(qty.dataset.delta)); return; }
+    const favorite = e.target.closest('[data-favorite]');
+    if (favorite) { e.preventDefault(); toggleFavorite(favorite.dataset.favorite); return; }
     if (e.target.closest('[data-open-cart]')) { e.preventDefault(); openCart(); return; }
     if (e.target.closest('[data-close-cart]') || e.target.matches('[data-overlay]')) { closeCart(); return; }
   });
@@ -273,6 +333,8 @@ function wireGlobalEvents() {
   initCatalog();
   initProductDetail();
   initCheckout();
+  initAccount();
+  syncFavoriteButtons();
 }
 
 document.addEventListener('DOMContentLoaded', wireGlobalEvents);

@@ -1,52 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Essência Body Care — Sabonetes</title>
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body data-category="Sabonetes">
-  <header class="topbar">
-    <div class="header-inner">
-      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><strong>Essência</strong><span>Body Care</span></span></a>
-      <nav class="nav" aria-label="Navegação principal">
-        <a href="../index.html">Início</a>
-        <a class="" href="Hidratantes.html">Hidratantes</a>
-        <a class="active" href="Sabonetes.html">Sabonetes</a>
-        <a class="" href="Kits.html">Kits</a>
-        <a class="" href="Oleos.html">Óleos</a>
-        <a href="DadosPagamento.html">Pagamento</a>
-      </nav>
-      <div class="header-actions"><button class="icon-btn" type="button" data-open-cart aria-label="Abrir carrinho">♡<span class="cart-count" data-cart-count>0</span></button></div>
-    </div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Essência Body Care — Sabonetes</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body data-category="Sabonetes">
+    <header class="topbar">
+      <div class="header-inner">
+        <a class="brand" href="../index.html"
+          ><span class="brand-mark" aria-hidden="true"></span
+          ><span class="brand-text"
+            ><strong>Essência</strong><span>Body Care</span></span
+          ></a
+        >
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="../index.html">Início</a>
+          <a class="" href="Hidratantes.html">Hidratantes</a>
+          <a class="active" href="Sabonetes.html">Sabonetes</a>
+          <a class="" href="Kits.html">Kits</a>
+          <a class="" href="Oleos.html">Óleos</a>
+          <a href="DadosPagamento.html">Pagamento</a>
+        </nav>
+        <div class="header-actions">
+          <a href="Usuario.html" class="account-link" aria-label="Minha Conta">
+            <span>♙</span>
+            Minha Conta
+          </a>
 
-  <main>
-    <div class="page-heading"><span class="eyebrow">Coleção Essência</span><h1>Sabonetes</h1><p>Uma seleção pensada para deixar seu autocuidado mais bonito e intencional.</p></div>
-    <div class="toolbar">
-      <div class="search"><input data-search type="search" placeholder="Buscar neste universo..." aria-label="Buscar produtos"></div>
-      <select class="field" data-sort aria-label="Ordenar produtos" style="margin:0"><option value="padrao">Mais relevantes</option><option value="menor">Menor preço</option><option value="maior">Maior preço</option><option value="nome">Nome</option></select>
-      <a class="btn secondary" href="../index.html">Ver tudo</a>
-    </div>
-    <div class="filter-pills">
-      <button class="filter-pill" data-filter="Todos">Todos</button>
-      <button class="filter-pill" data-filter="Hidratantes">Hidratantes</button>
-      <button class="filter-pill active" data-filter="Sabonetes">Sabonetes</button>
-      <button class="filter-pill" data-filter="Kits">Kits</button>
-      <button class="filter-pill" data-filter="Óleos">Óleos</button>
-    </div>
-    <div class="grid" data-product-grid></div>
-  </main>
+          <!-- Carrinho -->
+          <button
+            class="icon-btn"
+            type="button"
+            data-open-cart
+            aria-label="Abrir carrinho"
+          >
+            🛒
+            <span class="cart-count" data-cart-count>0</span>
+          </button>
+        </div>
+      </div>
+    </header>
 
-  <div class="overlay" data-overlay></div>
-  <aside class="cart-drawer" data-cart-drawer aria-label="Carrinho">
-    <div class="cart-head"><h2>Seu carrinho</h2><button class="icon-btn" data-close-cart type="button" aria-label="Fechar carrinho">×</button></div>
-    <div class="cart-list" data-cart-list></div>
-    <div class="cart-foot"><div class="order-total"><span>Total</span><span data-cart-total>R$ 0,00</span></div><a href="DadosPagamento.html" class="btn full" style="margin-top:12px">Ir para pagamento</a></div>
-  </aside>
-  <div class="toast" data-toast role="status" aria-live="polite"></div>
-  <footer><div class="footer-inner"><span class="footer-brand">Essência Body Care</span><span>© 2026 · um ritual por vez.</span></div></footer>
-  <script src="../js/common.js"></script>
-</body>
+    <main>
+      <div class="page-heading">
+        <span class="eyebrow">Coleção Essência</span>
+        <h1>Sabonetes</h1>
+        <p>
+          Uma seleção pensada para deixar seu autocuidado mais bonito e
+          intencional.
+        </p>
+      </div>
+      <div class="toolbar">
+        <div class="search">
+          <input
+            data-search
+            type="search"
+            placeholder="Buscar neste universo..."
+            aria-label="Buscar produtos"
+          />
+        </div>
+        <select
+          class="field"
+          data-sort
+          aria-label="Ordenar produtos"
+          style="margin: 0"
+        >
+          <option value="padrao">Mais relevantes</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="nome">Nome</option>
+        </select>
+        <a class="btn secondary" href="../index.html">Ver tudo</a>
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill" data-filter="Todos">Todos</button>
+        <button class="filter-pill" data-filter="Hidratantes">
+          Hidratantes
+        </button>
+        <button class="filter-pill active" data-filter="Sabonetes">
+          Sabonetes
+        </button>
+        <button class="filter-pill" data-filter="Kits">Kits</button>
+        <button class="filter-pill" data-filter="Óleos">Óleos</button>
+      </div>
+      <div class="grid" data-product-grid></div>
+    </main>
+
+    <div class="overlay" data-overlay></div>
+    <aside class="cart-drawer" data-cart-drawer aria-label="Carrinho">
+      <div class="cart-head">
+        <h2>Seu carrinho</h2>
+        <button
+          class="icon-btn"
+          data-close-cart
+          type="button"
+          aria-label="Fechar carrinho"
+        >
+          ×
+        </button>
+      </div>
+      <div class="cart-list" data-cart-list></div>
+      <div class="cart-foot">
+        <div class="order-total">
+          <span>Total</span><span data-cart-total>R$ 0,00</span>
+        </div>
+        <a href="DadosPagamento.html" class="btn full" style="margin-top: 12px"
+          >Ir para pagamento</a
+        >
+      </div>
+    </aside>
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-brand">Essência Body Care</span
+        ><span>© 2026 · um ritual por vez.</span>
+      </div>
+    </footer>
+    <script src="../js/common.js"></script>
+  </body>
 </html>

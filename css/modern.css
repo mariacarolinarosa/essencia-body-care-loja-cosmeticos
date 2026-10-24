@@ -1,0 +1,214 @@
+/* ESSÊNCIA BODY CARE — extensões para checkout e conta.
+   Importar APÓS style.css. Reutiliza integralmente o design system original. */
+.modern-main .page-heading {
+  margin-bottom: 28px;
+}
+.modern-main .page-heading h1 {
+  line-height: 1.12;
+}
+.modern-main .panel h2 {
+  margin: 0 0 18px;
+   font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: var(--ink);
+}
+.method-picker {
+  border: 0;
+  padding: 0;
+  margin: 0 0 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.method-picker legend {
+  grid-column: 1/-1;
+  margin-bottom: 12px;
+  color: var(--plum);
+  font-weight: 700;
+  font-size: 13px;
+}
+.method-picker label {
+  cursor: pointer;
+  position: relative;
+}
+.method-picker input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.method-picker label span {
+  display: block;
+  text-align: center;
+  padding: 18px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+.method-picker label:hover span {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+}
+.method-picker input:checked + span {
+  border-color: var(--rose-deep);
+  background: rgba(181, 111, 145, 0.12);
+  color: var(--plum);
+}
+.method-picker input:focus-visible + span {
+  outline: 2px solid var(--lavender);
+  outline-offset: 3px;
+}
+.payment-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(247, 233, 242, 0.65),
+    rgba(238, 230, 246, 0.48)
+  );
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 20px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 13px;
+}
+.payment-panel[hidden] {
+  display: none;
+}
+.payment-panel h3 {
+  color: var(--plum);
+  margin: 0 0 10px;
+}
+.payment-panel p {
+  margin: 0 0 12px;
+}
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.account-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 25px;
+}
+.account-tabs a {
+  padding: 10px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  transition: 0.2s ease;
+}
+.account-tabs a:hover,
+.account-tabs a.active {
+  background: rgba(181, 111, 145, 0.12);
+  color: var(--plum);
+  border-color: rgba(141, 79, 114, 0.25);
+}
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+.account-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: 0.25s ease;
+}
+.account-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.account-tile > span {
+  font-size: 29px;
+  color: var(--rose-deep);
+}
+.account-tile h2 {
+  font:
+    500 24px Georgia,
+    "Times New Roman",
+    serif;
+  margin: 0;
+  color: var(--plum);
+}
+.account-tile p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+  margin: 0;
+}
+.account-tile strong {
+  color: var(--rose-deep);
+  font-size: 12px;
+}
+.account-panel {
+  max-width: 900px;
+}
+.account-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.account-item:last-child {
+  border-bottom: 0;
+}
+.account-item p {
+  color: var(--muted);
+  margin: 7px 0;
+  font-size: 13px;
+}
+.account-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+@media (max-width: 960px) {
+  .account-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+  .account-tile {
+    padding: 22px;
+  }
+  .account-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .method-picker {
+    gap: 8px;
+  }
+  .method-picker label span {
+    padding: 15px 8px;
+  }
+  .payment-panel {
+    padding: 16px;
+  }
+}

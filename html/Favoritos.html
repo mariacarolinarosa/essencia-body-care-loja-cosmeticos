@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Favoritos — Essência Body Care</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/modern.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="header-inner">
+        <a class="brand" href="../index.html"
+          ><span class="brand-mark" aria-hidden="true"></span
+          ><span class="brand-text"
+            ><strong>Essência</strong><span>Body Care</span></span
+          ></a
+        >
+        <nav class="nav">
+          <a href="../index.html">Início</a
+          ><a href="Hidratantes.html">Hidratantes</a
+          ><a href="Sabonetes.html">Sabonetes</a><a href="Kits.html">Kits</a
+          ><a href="Oleos.html">Óleos</a
+          ><a href="DadosPagamento.html">Pagamento</a
+          ><a href="Usuario.html">Minha conta</a>
+        </nav>
+          <div class="header-actions">
+
+           <a href="Usuario.html" class="account-link" aria-label="Minha Conta">
+              <span>♙</span>
+              Minha Conta
+            </a>
+
+            <!-- Carrinho -->
+            <button class="icon-btn" type="button"
+              data-open-cart aria-label="Abrir carrinho">
+              🛒
+              <span class="cart-count" data-cart-count>0</span>
+            </button>
+
+          </div>
+      </div>
+    </header>
+    <main>
+      <div class="page-heading">
+        <span class="eyebrow">Minha conta</span>
+        <h1>Meus favoritos</h1>
+        <p>Guarde seus produtos preferidos para encontrar depois.</p>
+      </div>
+      <nav class="account-tabs" aria-label="Área do usuário">
+        <a href="Usuario.html">Visão geral</a
+        ><a href="DadosCadastro.html">Dados de cadastro</a
+        ><a href="MinhasCompras.html">Minhas compras</a
+        ><a class="active" href="Favoritos.html">Favoritos</a>
+      </nav>
+      <section class="panel account-panel" data-favorites-list></section>
+    </main>
+    <div class="overlay" data-overlay></div>
+    <aside class="cart-drawer" data-cart-drawer aria-label="Carrinho">
+      <div class="cart-head">
+        <h2>Seu carrinho</h2>
+        <button
+          class="icon-btn"
+          data-close-cart
+          type="button"
+          aria-label="Fechar carrinho"
+        >
+          ×
+        </button>
+      </div>
+      <div class="cart-list" data-cart-list></div>
+      <div class="cart-foot">
+        <div class="order-total">
+          <span>Total</span><span data-cart-total>R$ 0,00</span>
+        </div>
+      </div>
+    </aside>
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-brand">Essência Body Care</span
+        ><span>© 2026 · Demonstração</span>
+      </div>
+    </footer>
+    <script src="../js/common.js"></script>
+  </body>
+</html>

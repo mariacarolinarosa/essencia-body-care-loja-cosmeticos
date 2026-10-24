@@ -1,54 +1,176 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Essência Body Care — Pagamento</title>
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-  <header class="topbar">
-    <div class="header-inner">
-      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><strong>Essência</strong><span>Body Care</span></span></a>
-      <nav class="nav"><a href="../index.html">Início</a><a href="Hidratantes.html">Hidratantes</a><a href="Sabonetes.html">Sabonetes</a><a href="Kits.html">Kits</a><a href="Oleos.html">Óleos</a><a class="active" href="DadosPagamento.html">Pagamento</a></nav>
-      <div class="header-actions"><button class="icon-btn" type="button" data-open-cart aria-label="Abrir carrinho">♡<span class="cart-count" data-cart-count>0</span></button></div>
-    </div>
-  </header>
-
-  <main>
-    <div class="page-heading"><span class="eyebrow">Finalização</span><h1>Seu ritual está quase completo.</h1><p>Preencha o formulário abaixo para simular a finalização da compra.</p></div>
-    <section class="checkout">
-      <div class="panel">
-        <h3>Dados de pagamento</h3>
-        <form data-checkout-form>
-          <!-- Os campos abaixo são apenas demonstrativos. Não enviam dados para nenhum servidor. -->
-          <div class="form-grid">
-            <div class="field full"><label for="name">Nome no cartão</label><input id="name" type="text" autocomplete="cc-name" placeholder="Nome impresso no cartão" required></div>
-            <div class="field full"><label for="number">Número do cartão</label><input id="number" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" required></div>
-            <div class="field"><label for="expiry">Validade</label><input id="expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5" required></div>
-            <div class="field"><label for="cvv">CVV</label><input id="cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" required></div>
-          </div>
-          <div class="notice">Demonstração front-end: nenhum dado de cartão é enviado ou armazenado por este projeto.</div>
-          <button class="btn full" style="margin-top:14px" type="submit">Finalizar compra</button>
-        </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pagamento — Essência Body Care</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/modern.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="header-inner">
+        <a class="brand" href="../index.html"
+          ><span class="brand-mark" aria-hidden="true"></span
+          ><span class="brand-text"
+            ><strong>Essência</strong><span>Body Care</span></span
+          ></a
+        >
+        <nav class="nav">
+          <a href="../index.html">Início</a
+          ><a href="Hidratantes.html">Hidratantes</a
+          ><a href="Sabonetes.html">Sabonetes</a><a href="Kits.html">Kits</a
+          ><a href="Oleos.html">Óleos</a
+          ><a class="active" href="DadosPagamento.html">Pagamento</a
+          ><a href="Usuario.html">Minha conta</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            class="icon-btn"
+            type="button"
+            data-open-cart
+            aria-label="Abrir carrinho"
+          >
+            ♡<span class="cart-count" data-cart-count>0</span>
+          </button>
+        </div>
       </div>
-
-      <aside class="panel">
-        <h3>Resumo</h3>
-        <div data-order-list></div>
-        <div class="order-total"><span>Total</span><span data-checkout-total>R$ 0,00</span></div>
-      </aside>
-    </section>
-  </main>
-
-  <div class="overlay" data-overlay></div>
-  <aside class="cart-drawer" data-cart-drawer aria-label="Carrinho">
-    <div class="cart-head"><h2>Seu carrinho</h2><button class="icon-btn" data-close-cart type="button" aria-label="Fechar carrinho">×</button></div>
-    <div class="cart-list" data-cart-list></div>
-    <div class="cart-foot"><div class="order-total"><span>Total</span><span data-cart-total>R$ 0,00</span></div></div>
-  </aside>
-  <div class="toast" data-toast role="status" aria-live="polite"></div>
-  <footer><div class="footer-inner"><span class="footer-brand">Essência Body Care</span><span>© 2026 · compra demonstrativa.</span></div></footer>
-  <script src="../js/common.js"></script>
-</body>
+    </header>
+    <main>
+      <div class="page-heading">
+        <span class="eyebrow">Checkout</span>
+        <h1>Seu ritual está quase completo.</h1>
+        <p>
+          Escolha como deseja pagar. Esta é uma demonstração, sem cobranças
+          reais.
+        </p>
+      </div>
+      <section class="checkout">
+        <div class="panel">
+          <h2>Forma de pagamento</h2>
+          <form data-checkout-form>
+            <fieldset class="method-picker">
+              <legend>Escolha uma opção</legend>
+              <label
+                ><input
+                  type="radio"
+                  name="payment-method"
+                  value="pix"
+                  checked
+                /><span>◇ Pix</span></label
+              ><label
+                ><input
+                  type="radio"
+                  name="payment-method"
+                  value="boleto"
+                /><span>▤ Boleto</span></label
+              ><label
+                ><input
+                  type="radio"
+                  name="payment-method"
+                  value="credito"
+                /><span>▣ Crédito</span></label
+              ><label
+                ><input
+                  type="radio"
+                  name="payment-method"
+                  value="debito"
+                /><span>▣ Débito</span></label
+              >
+            </fieldset>
+            <div class="payment-panel" data-payment-panel="pix">
+              <h3>Pix</h3>
+              <p>
+                Pagamento rápido e prático. Nesta demonstração, não será gerado
+                um QR Code ou chave Pix real.
+              </p>
+              <div class="notice">
+                Ao finalizar, o pedido será registrado como simulação, sem
+                pagamento.
+              </div>
+            </div>
+            <div class="payment-panel" data-payment-panel="boleto" hidden>
+              <h3>Boleto bancário</h3>
+              <p>
+                Simule a escolha de pagamento por boleto. Nenhuma linha
+                digitável ou boleto válido será emitido.
+              </p>
+              <div class="notice">
+                Pedido demonstrativo: nenhum pagamento será processado.
+              </div>
+            </div>
+            <div class="payment-panel" data-payment-panel="credito" hidden>
+              <h3>Cartão de crédito</h3>
+              <p>
+                Para sua segurança, não informe números reais de cartão neste
+                projeto demonstrativo.
+              </p>
+              <div class="field">
+                <label for="installments">Parcelamento demonstrativo</label
+                ><select id="installments" name="installments">
+                  <option>1× sem juros</option>
+                  <option>2× sem juros</option>
+                  <option>3× sem juros</option>
+                </select>
+              </div>
+              <div class="notice">
+                A integração com um provedor de pagamentos será necessária para
+                cobranças reais.
+              </div>
+            </div>
+            <div class="payment-panel" data-payment-panel="debito" hidden>
+              <h3>Cartão de débito</h3>
+              <p>
+                Pagamento por débito selecionado. Não solicitamos dados
+                bancários nesta demonstração.
+              </p>
+              <div class="notice">
+                Para transações reais, utilize um checkout seguro de um provedor
+                de pagamentos.
+              </div>
+            </div>
+            <button class="btn full" type="submit">
+              Finalizar pedido demonstrativo
+            </button>
+          </form>
+        </div>
+        <aside class="panel">
+          <h2>Resumo do pedido</h2>
+          <div data-order-list></div>
+          <div class="order-total">
+            <span>Total</span><strong data-checkout-total>R$ 0,00</strong>
+          </div>
+          <p class="muted">Frete não incluído nesta demonstração.</p>
+        </aside>
+      </section>
+    </main>
+    <div class="overlay" data-overlay></div>
+    <aside class="cart-drawer" data-cart-drawer aria-label="Carrinho">
+      <div class="cart-head">
+        <h2>Seu carrinho</h2>
+        <button
+          class="icon-btn"
+          data-close-cart
+          type="button"
+          aria-label="Fechar carrinho"
+        >
+          ×
+        </button>
+      </div>
+      <div class="cart-list" data-cart-list></div>
+      <div class="cart-foot">
+        <div class="order-total">
+          <span>Total</span><span data-cart-total>R$ 0,00</span>
+        </div>
+      </div>
+    </aside>
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-brand">Essência Body Care</span
+        ><span>© 2026 · Demonstração</span>
+      </div>
+    </footer>
+    <script src="../js/common.js"></script>
+  </body>
 </html>

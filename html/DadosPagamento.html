@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essência Body Care — Pagamento</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="header-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><strong>Essência</strong><span>Body Care</span></span></a>
+      <nav class="nav"><a href="../index.html">Início</a><a href="Hidratantes.html">Hidratantes</a><a href="Sabonetes.html">Sabonetes</a><a href="Kits.html">Kits</a><a href="Oleos.html">Óleos</a><a class="active" href="DadosPagamento.html">Pagamento</a></nav>
+      <div class="header-actions"><button class="icon-btn" type="button" data-open-cart aria-label="Abrir carrinho">♡<span class="cart-count" data-cart-count>0</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-heading"><span class="eyebrow">Finalização</span><h1>Seu ritual está quase completo.</h1><p>Preencha o formulário abaixo para simular a finalização da compra.</p></div>
+    <section class="checkout">
+      <div class="panel">
+        <h3>Dados de pagamento</h3>
+        <form data-checkout-form>
+          <!-- Os campos abaixo são apenas demonstrativos. Não enviam dados para nenhum servidor. -->
+          <div class="form-grid">
+            <div class="field full"><label for="name">Nome no cartão</label><input id="name" type="text" autocomplete="cc-name" placeholder="Nome impresso no cartão" required></div>
+            <div class="field full"><label for="number">Número do cartão</label><input id="number" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" required></div>
+            <div class="field"><label for="expiry">Validade</label><input id="expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5" required></div>
+            <div class="field"><label for="cvv">CVV</label><input id="cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" required></div>
+          </div>
+          <div class="notice">Demonstração front-end: nenhum dado de cartão é enviado ou armazenado por este projeto.</div>
+          <button class="btn full" style="margin-top:14px" type="submit">Finalizar compra</button>
+        </form>
+      </div>
+
+      <aside class="panel">
+        <h3>Resumo</h3>
+        <div data-order-list></div>
+        <div class="order-total"><span>Total</span><span data-checkout-total>R$ 0,00</span></div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="overlay" data-overlay></div>
+  <aside class="cart-drawer" data-cart-drawer aria-label="Carrinho">
+    <div class="cart-head"><h2>Seu carrinho</h2><button class="icon-btn" data-close-cart type="button" aria-label="Fechar carrinho">×</button></div>
+    <div class="cart-list" data-cart-list></div>
+    <div class="cart-foot"><div class="order-total"><span>Total</span><span data-cart-total>R$ 0,00</span></div></div>
+  </aside>
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+  <footer><div class="footer-inner"><span class="footer-brand">Essência Body Care</span><span>© 2026 · compra demonstrativa.</span></div></footer>
+  <script src="../js/common.js"></script>
+</body>
+</html>

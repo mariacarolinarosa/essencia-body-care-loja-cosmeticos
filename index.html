@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Essência Body Care — cosméticos e rituais de autocuidado com estética feminina e mística.">
+  <title>Essência Body Care — Autocuidado com essência</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-category="Todos">
+  <header class="topbar">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Essência Body Care — Início">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text"><strong>Essência</strong><span>Body Care</span></span>
+      </a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="active" href="index.html">Início</a>
+        <a href="html/Hidratantes.html">Hidratantes</a>
+        <a href="html/Sabonetes.html">Sabonetes</a>
+        <a href="html/Kits.html">Kits</a>
+        <a href="html/Oleos.html">Óleos</a>
+        <a href="html/DadosPagamento.html">Pagamento</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" data-open-cart aria-label="Abrir carrinho" title="Carrinho">
+          ♡<span class="cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="colecao" >
+      <div class="section-heading">
+        <div><h2>Encontre o seu ritual</h2><p>Escolha pelo momento, pela sensação ou simplesmente pelo que combina com você.</p></div>
+      </div>
+      <div class="category-grid">
+        <a class="category-card" href="html/Hidratantes.html"><span class="category-icon">◌</span><strong>Hidratantes</strong><span>Toque cremoso e envolvente</span></a>
+        <a class="category-card" href="html/Sabonetes.html"><span class="category-icon">✦</span><strong>Sabonetes</strong><span>Banho como ritual diário</span></a>
+        <a class="category-card" href="html/Kits.html"><span class="category-icon">◇</span><strong>Kits</strong><span>Presentes com significado</span></a>
+        <a class="category-card" href="html/Oleos.html"><span class="category-icon">☾</span><strong>Óleos</strong><span>Nutrição para a pele</span></a>
+      </div>
+    </section>
+    <section>
+      <div class="section-heading">
+        <div><h2>Campeões de vendas</h2><p>Uma seleção para começar ou renovar seu ritual.</p></div>
+      </div>
+      <div class="grid" data-product-grid></div>
+    </section>
+  </main>
+
+  <div class="overlay" data-overlay></div>
+  <aside class="cart-drawer" data-cart-drawer aria-label="Carrinho">
+    <div class="cart-head"><h2>Seu carrinho</h2><button class="icon-btn" data-close-cart type="button" aria-label="Fechar carrinho">×</button></div>
+    <div class="cart-list" data-cart-list></div>
+    <div class="cart-foot">
+      <div class="order-total"><span>Total</span><span data-cart-total>R$ 0,00</span></div>
+      <a href="html/DadosPagamento.html" class="btn full" style="margin-top:12px">Ir para pagamento</a>
+    </div>
+  </aside>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <footer>
+    <div class="footer-inner"><span class="footer-brand">Essência Body Care</span><span>© 2026 · autocuidado, presença, delicadeza e inteligência artificial.</span></div>
+  </footer>
+  <script src="js/common.js"></script>
+</body>
+</html>
